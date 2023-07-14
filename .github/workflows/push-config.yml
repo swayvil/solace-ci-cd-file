@@ -26,13 +26,10 @@ jobs:
 
       - name: "Example output creation"
         id: "my_step"
-        run: |
-          my_var=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-          echo "my_var=$my_var" >> $GITHUB_OUTPUT
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
       - name: "Example output call between steps"
-        run: |
-              echo "Output ${{ steps.my_step.outputs.my_var }}"
+        run: echo ${{ env.GITHUB_SHA_SHORT }}
 
 #      - name: Display pushed file path v2
 #        run: |
