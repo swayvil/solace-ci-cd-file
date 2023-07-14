@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 5
 
       - name: Download Solconfig jar
-        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
+        run: curl -LJO https://github.com/swayvil/solconfig/releases/tag/v1.1.7.1/solconfig.jar
 
       - name: Get pushed file
         id: step_one
@@ -44,4 +44,4 @@ jobs:
           SEMP_URL: ${{ vars.SEMP_URL }}
           SEMP_USER: ${{ vars.SEMP_USER }}
           SEMP_PWD: ${{ secrets.SEMP_PWD }}
-        run: java -jar solconfig.jar -H=${SEMP_URL} -u=${SEMP_USER} -p=${SEMP_PWD} update --no-delete ${{ env.FILE }}
+        run: java -jar solconfig.jar -H=${SEMP_URL} -u=${SEMP_USER} -p=${SEMP_PWD} update --no-delete --skip-vpn ${{ env.FILE }}
