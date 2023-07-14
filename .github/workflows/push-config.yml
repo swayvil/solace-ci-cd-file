@@ -28,12 +28,11 @@ jobs:
         id: "my_step"
         run: |
           my_var="Hello World"
-          echo "Output [$my_var]"
           echo "my_var=$my_var" >> $GITHUB_OUTPUT
 
       - name: "Example output call between steps"
         run: |
-              echo "Output [${{steps.my_step.outputs.my_var}}]"
+              echo "Output ${{ steps.my_step.outputs.my_var }}"
 
 #      - name: Display pushed file path v2
 #        run: |
