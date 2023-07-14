@@ -27,7 +27,7 @@ jobs:
       - name: Set the value
         id: step_one
         run: |
-            echo "FOO=$(git status)" >> $GITHUB_ENV
+            echo "FOO=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_ENV
       - name: Use the value
         id: step_two
         run: |
