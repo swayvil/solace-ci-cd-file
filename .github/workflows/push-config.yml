@@ -6,6 +6,8 @@ on:
   # Triggers the workflow on push request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    paths:
+      - config/**
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,29 +23,25 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
+          # https://stackoverflow.com/questions/69369569/capturing-git-command-output-in-github-actions
           fetch-depth: 5
 
-#      - name: Download Solconfig jar
-#        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
+      - name: Download Solconfig jar
+        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
 
-      - name: Set the value
+      - name: Get pushed file
         id: step_one
         run: |
-            echo "FOO=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | head -2 | tail -1)" >> $GITHUB_ENV
-      - name: Use the value
+            echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | head -2 | tail -1)" >> $GITHUB_ENV
+ 
+      - name: Display pushed file
         id: step_two
         run: |
-            echo "${{ env.FOO }}"
-
-#      - name: Display pushed file path v2
-#        run: |
-#          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | while read file; do
-#            echo "Pushed file: $file"
-#          done
+            echo "${{ env.FILE }}"
         
-#      - name: Create the queue
-#        env:
-#          SEMP_URL: ${{ vars.SEMP_URL }}
-#          SEMP_USER: ${{ vars.SEMP_USER }}
-#          SEMP_PWD: ${{ secrets.SEMP_PWD }}
-#        run: java -jar solconfig.jar -H=${SEMP_URL} -u=${SEMP_USER} -p=${SEMP_PWD} update --no-delete queue.json
+      - name: Push config
+        env:
+          SEMP_URL: ${{ vars.SEMP_URL }}
+          SEMP_USER: ${{ vars.SEMP_USER }}
+          SEMP_PWD: ${{ secrets.SEMP_PWD }}
+        run: java -jar solconfig.jar -H=${SEMP_URL} -u=${SEMP_USER} -p=${SEMP_PWD} update --no-delete ${{ env.FILE }}
