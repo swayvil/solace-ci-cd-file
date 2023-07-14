@@ -26,13 +26,14 @@ jobs:
 
       - name: Display pushed file path
         run: |
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+          file=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "Pushed file: $file"
 
-      - name: Display pushed file path v2
-        run: |
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | while read file; do
-            echo "Pushed file: $file"
-          done
+#      - name: Display pushed file path v2
+#        run: |
+#          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | while read file; do
+#            echo "Pushed file: $file"
+#          done
         
 #      - name: Create the queue
 #        env:
