@@ -20,6 +20,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 5
 
 #      - name: Download Solconfig jar
 #        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
