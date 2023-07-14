@@ -1,0 +1,38 @@
+# This workflow push (create/update) a configuration to a Solace PubSub+ event broker
+name: PushConfig
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+#      - name: Download Solconfig jar
+#        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
+
+      - name: Display pushed file path
+        run: |
+          git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }} | while read file; do
+            echo "Pushed file: $file"
+          done
+        
+#      - name: Create the queue
+#        env:
+#          SEMP_URL: ${{ vars.SEMP_URL }}
+#          SEMP_USER: ${{ vars.SEMP_USER }}
+#          SEMP_PWD: ${{ secrets.SEMP_PWD }}
+#        run: java -jar solconfig.jar -H=${SEMP_URL} -u=${SEMP_USER} -p=${SEMP_PWD} update --no-delete queue.json
