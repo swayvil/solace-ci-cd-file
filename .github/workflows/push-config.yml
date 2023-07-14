@@ -24,12 +24,14 @@ jobs:
 #      - name: Download Solconfig jar
 #        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
 
-      - name: "Example output creation"
-        id: "my_step"
-        run: echo "GITHUB_SHA_SHORT=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_ENV
-
-      - name: "Example output call between steps"
-        run: echo ${{ env.GITHUB_SHA_SHORT }}
+      - name: Set the value
+        id: step_one
+        run: |
+            echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.FOO }}"
 
 #      - name: Display pushed file path v2
 #        run: |
