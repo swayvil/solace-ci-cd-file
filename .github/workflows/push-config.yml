@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 5
 
       - name: Download Solconfig jar
-        run: curl -LJO https://github.com/swayvil/solconfig/releases/tag/v1.1.7.1/solconfig.jar
+        run: curl -LJO https://github.com/swayvil/solconfig/releases/download/v1.1.7.1/solconfig.jar
 
       - name: Get pushed file
         id: step_one
