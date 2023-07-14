@@ -26,7 +26,7 @@ jobs:
 
       - name: Get pushed file
         run: |
-          echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})")" >> $GITHUB_OUTPUT  
+          echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_OUTPUT  
         id: file
 
       - name: Display pushed file
