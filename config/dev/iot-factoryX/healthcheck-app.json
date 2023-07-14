@@ -36,7 +36,7 @@
           "ingressEnabled": true,
           "maxBindCount": 10,
           "owner": "appX",
-          "queueName": "appX1",
+          "queueName": "appX2",
           "subscriptions": [
             {
               "subscriptionTopic": "T/rest/pubsub"
