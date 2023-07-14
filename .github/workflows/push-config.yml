@@ -26,8 +26,10 @@ jobs:
 
       - name: Display pushed file path
         run: |
-          file=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-          echo "Pushed file: $file"
+          echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo $FILE
+          echo ${{ steps.version.outputs.FILE }}
+        id: file
 
 #      - name: Display pushed file path v2
 #        run: |
