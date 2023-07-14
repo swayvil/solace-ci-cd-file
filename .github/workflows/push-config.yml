@@ -26,7 +26,7 @@ jobs:
 
       - name: "Example output creation"
         id: "my_step"
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+        run: echo "GITHUB_SHA_SHORT=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_ENV
 
       - name: "Example output call between steps"
         run: echo ${{ env.GITHUB_SHA_SHORT }}
