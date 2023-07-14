@@ -1,8 +1,8 @@
 {
-  "sempVersion": "2.34XX",
+  "sempVersion": "2.32",
   "msgVpns": [
     {
-      "msgVpnName": "default",
+      "msgVpnName": "vtaront",
       "aclProfiles": [
         {
           "aclProfileName": "appX",
