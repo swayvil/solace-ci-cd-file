@@ -24,12 +24,14 @@ jobs:
 #      - name: Download Solconfig jar
 #        run: curl -LJO https://github.com/flyisland/solconfig/releases/download/v1.1.7/solconfig.jar
 
-      - name: Display pushed file path
+      - name: Get pushed file
         run: |
-          echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_OUTPUT
-          echo $FILE
-          echo ${{ steps.version.outputs.FILE }}
+          echo "FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})")" >> $GITHUB_OUTPUT  
         id: file
+
+      - name: Display pushed file
+        run: |
+          echo "FILE [${{steps.file.outputs.FILE}}]"
 
 #      - name: Display pushed file path v2
 #        run: |
