@@ -26,7 +26,11 @@ jobs:
 
       - name: Display pushed file path
         run: |
-          git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }} | while read file; do
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+
+      - name: Display pushed file path v2
+        run: |
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | while read file; do
             echo "Pushed file: $file"
           done
         
