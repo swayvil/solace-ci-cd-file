@@ -1,0 +1,56 @@
+{
+  "sempVersion": "2.34",
+  "msgVpns": [
+    {
+      "msgVpnName": "default",
+      "aclProfiles": [
+        {
+          "aclProfileName": "appX",
+          "clientConnectDefaultAction": "allow",
+          "publishTopicDefaultAction": "allow",
+          "subscribeTopicDefaultAction": "allow",
+          "publishTopicExceptions": [
+            {
+              "publishTopicException": "test/acl/1",
+              "publishTopicExceptionSyntax": "smf"
+            }
+          ],
+          "subscribeTopicExceptions": [
+            {
+              "subscribeTopicException": "test/acl/1",
+              "subscribeTopicExceptionSyntax": "smf"
+            }
+          ]
+        }
+      ],
+      "clientUsernames": [
+        {
+          "clientUsername": "appX",
+          "enabled": true,
+          "password": "ebO1Bfc"
+        }
+      ],
+      "queues": [
+        {
+          "egressEnabled": true,
+          "ingressEnabled": true,
+          "maxBindCount": 10,
+          "owner": "appX",
+          "queueName": "appX",
+          "subscriptions": [
+            {
+              "subscriptionTopic": "T/rest/pubsub"
+            },
+            {
+              "subscriptionTopic": "topic1"
+            },
+            {
+              "subscriptionTopic": "topic2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
