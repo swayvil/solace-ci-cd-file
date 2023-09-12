@@ -13,5 +13,7 @@ On Github repository settings. How to: [Creating configuration variables for a r
 On Github repository settings create an environment named "dev", check "Required reviewers" and add at least one reviewer.
 ## How to
 Under "config" folder, push a configuration file in [Solconfig](https://github.com/flyisland/solconfig) format (json). It will automatically trigger the Github Action workflow. A reviewer will be notified and will have to validate the configuration so it can be pushed on the target Solace service.
+![review-deployments](/images/review-deployments.png)
+![approve-and-deploy](/images/approve-and-deploy.png)
 ## References
 Another version with a form in input: [solace-ci-cd-form](https://github.com/swayvil/solace-ci-cd-form)
