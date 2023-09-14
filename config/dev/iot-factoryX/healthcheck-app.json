@@ -39,7 +39,25 @@
           "queueName": "appX",
           "subscriptions": [
             {
-              "subscriptionTopic": "T/rest/pubsub"
+              "subscriptionTopic": "T/rest/pubsub/new"
+            },
+            {
+              "subscriptionTopic": "topic1"
+            },
+            {
+              "subscriptionTopic": "topic2"
+            }
+          ]
+        },
+        {
+          "egressEnabled": true,
+          "ingressEnabled": true,
+          "maxBindCount": 10,
+          "owner": "appX",
+          "queueName": "appX2",
+          "subscriptions": [
+            {
+              "subscriptionTopic": "T/rest/pubsub/new"
             },
             {
               "subscriptionTopic": "topic1"
